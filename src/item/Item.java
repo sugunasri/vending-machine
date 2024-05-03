@@ -4,17 +4,19 @@ public class Item {
     private ItemType itemType;
     private int price;
 
-    public ItemType getItemType() {
+    public ItemType getType(){
         return this.itemType;
     }
-    public void setItemType(ItemType itemType) {
+
+    public void setItemType(ItemType itemType){
         this.itemType = itemType;
     }
-    public int getPrice() {
+
+    public int getPrice(){
         return this.price;
     }
-    public void setPrice(int price) {
+
+    public void setPrice(int price){
         this.price = price;
     }
-
 }

@@ -1,29 +1,40 @@
 package item;
 
 public class ItemShelf {
-    private int itemCode;
+    private int itemcode;
     private Item item;
-    private boolean soldOut;
+    private boolean SoldOut;
+    private int quantity;
 
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+    }
     
-    public int getItemCode() {
-        return this.itemCode;
+    public int getQuantity(){
+        return this.quantity;
     }
-    public void setItemCode(int itemCode) {
-        this.itemCode = itemCode;
-    }
-    public Item getItem() {
+
+    public Item getItem(){
         return this.item;
     }
-    public void setItem(Item item) {
+
+    public void setItem(Item item){
         this.item = item;
     }
-    public boolean isSoldOut() {
-        return this.soldOut;
-    }
-    public void setSoldOut(boolean soldOut) {
-        this.soldOut = soldOut;
-    }
 
-    
+    public int getItemCode(){
+        return this.itemcode;
+    }
+    public void setItemCode(int code){
+        this.itemcode = code;
+    }
+    public boolean isSoldOut(){
+        return this.SoldOut;
+    }
+    public void setSoldOut(boolean soldout){
+        this.SoldOut = soldout;
+        if(soldout == true){
+            this.quantity = 0;
+        }
+    }
 }

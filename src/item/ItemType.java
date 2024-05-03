@@ -1,19 +1,13 @@
 package item;
 
 public enum ItemType {
-    BOTTLED_WATER,
-    COCACOLA,
+    OREO,
     SNICKERS,
-    LAYS,
-    ICECREAM_BARS,
-    ENERGY_SHOTS,
-    POPCORN,
-    MIXED_NUTS,
     SODA,
-    CHOCOLATE_BARS,
-    DORITOS,
-    CHEWING_GUM,
+    CANDIES,
     COKE,
-    CANDY,
-    ENERGY_DRINKS;
+    MandMs,
+    LAYS,
+    CHEWINGGUM,
+    FANTA
 }

@@ -1,14 +1,15 @@
 package inventory;
 
-import item.Item;
-import item.ItemShelf;
+import java.util.*;
+
+import item.*;
 
 public class Inventory {
     private ItemShelf[] inventory;
 
     public Inventory(int n){
         inventory = new ItemShelf[n];
-        intializeInventory();
+        intialEmptyInventory();
     }
 
     public ItemShelf[] getInventory(){
@@ -18,43 +19,54 @@ public class Inventory {
     public void setInventory(ItemShelf[] inventory){
         this.inventory = inventory;
     }
-    private void intializeInventory(){
+
+    //initializing the default state of inventory
+    public void intialEmptyInventory(){
         int startcode = 101;
-        for(int i=0;i<inventory.length;i++){
+        for(int i = 0;i < inventory.length;i++){
             ItemShelf itemShelf = new ItemShelf();
-            itemShelf.setItemCode(startcode++);
+            itemShelf.setItemCode(startcode);
             itemShelf.setSoldOut(true);
+            itemShelf.setQuantity(0);
             inventory[i] = itemShelf;
+            startcode++;
         }
     }
-    public void addItem(Item item,int itemCode){
+
+    //adding any item in the inventory
+    public void addItem(Item item,int itemCode,int quantity){
         for(ItemShelf shelf: inventory){
             if(shelf.getItemCode() == itemCode){
-                shelf.setItem(item);
-                shelf.setSoldOut(false);
+                if(shelf.isSoldOut()){
+                    shelf.setItem(item);
+                    shelf.setSoldOut(false);
+                    shelf.setQuantity(quantity);
+                }
             }
         }
     }
 
     public Item getItem(int itemCode){
-        for(ItemShelf shelf: inventory){
+        for(ItemShelf shelf:inventory){
             if(shelf.getItemCode() == itemCode){
                 if(shelf.isSoldOut()){
-                    System.out.println("Item got sold out! SORRY");
+                    System.out.println("Item got soldOut");
                     return new Item();
                 }else{
-                    updateSoldOutItem(itemCode);
+                    shelf.setQuantity(shelf.getQuantity()-1);
+                    if(shelf.getQuantity() == 0) shelf.setSoldOut(true);
+
                     return shelf.getItem();
                 }
             }
         }
-        System.out.println("Entered an invalid code");
+        System.out.println("Itemcode doesn't exist");
         return new Item();
     }
 
-    public void updateSoldOutItem(int itemCodenum){
+    public void updateSoldOutItem(int itemCode){
         for(ItemShelf shelf:inventory){
-            if(shelf.getItemCode() == itemCodenum){
+            if(shelf.getItemCode() == itemCode){
                 shelf.setSoldOut(true);
             }
         }
