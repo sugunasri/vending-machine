@@ -1,7 +1,5 @@
 package inventory;
 
-import java.util.*;
-
 import item.*;
 
 public class Inventory {
